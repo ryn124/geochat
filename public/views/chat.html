@@ -1,0 +1,38 @@
+<div class="container">
+  <div id="mapx"></div>
+  <div id="chat-container">
+    <div class="row col-md-12" id="chat-top">
+
+      <div class="col-md-3 chats-boxes">
+        <h3>{{userInfo.username}}</h3>
+      </div>
+
+      <div class="col-md-9 chats-boxes">
+        <h3>{{zipCode}}</h3>
+      </div>
+    </div>
+    <div class="row col-md-12" id="chat-middle">
+
+      <div class="col-md-3 chats-boxes">
+        <h5>users</h5>
+      </div>
+
+      <div class="col-md-9 chats-boxes">
+        <div ng-repeat="x in chatLog track by $index">
+          <h5><strong>{{x.username}}:</strong> {{x.message}}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="row col-md-12 ">
+      <form ng-submit="testClick()">
+        <div class="col-md-10" id="input-field">
+          <input type="text" class="form-control" placeholder="enter message.." ng-model="textArea">
+        </div>
+        <div class="col-md-2" id="chat bottom">
+          <button class="btn-md btn-block btn-primary" id="chat-button">Send</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

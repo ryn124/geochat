@@ -1,0 +1,120 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../server');
+var debug = require('debug')('geochat:server');
+var http = require('http');
+var socket = require('socket.io');
+var usersController = require ("../controllers/users-controller");  
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+console.log(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+// socket io
+var io = socket(server);
+var openSockets = [];
+io.on('connection', function(socket){
+  console.log('Socket connected: ' + socket.id);
+  openSockets.push(socket)
+  console.log("Connections: " + openSockets.length)
+  socket.on('login', function(data){
+    socket.zipCode = data.zipCode;
+    socket.join(socket.zipCode);
+    console.log(socket.id + " has joined " + socket.zipCode)
+  })
+  socket.on('chat', function(data){
+    // var message = data.username + ": " + data.message
+    io.to(socket.zipCode).emit('chat', data)
+    // io.sockets.emit('chat', data)
+  })
+  socket.on('disconnect', function(data){
+    console.log(socket.id + " has left " + socket.zipCode)
+    socket.leave(socket.zipCode)
+    openSockets.splice(openSockets.indexOf(socket, 1))
+    console.log('Socket disconnected: ' + socket.id);
+  })
+})
+console.log("Dependency test: " + usersController.users[0].username)
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="geochatApp">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Geochat</title>
+  <!-- socket.io -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+      <!-- Google Font - Open Sans -->
+  <link async href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+  <!-- Bootstrap CDN 3.3.7 -->
+  <link async rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./css/styles.css">
+  <!-- Angular CDN 1.6.5 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+  <!-- Angular UI Router CDN 0.4.2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+  <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDsW7Y8M1-EDiA5GOUWIEmFsXrkT-SDqtw"></script>
+    <!-- socket chat -->
+    <script src="./chat.js"></script>
+</head>
+<body>
+  <div class="navbar" id="header">
+    <h3 class="text-center">GeoChat</h3>
+  </div>
+  <div ui-view></div>
+  <!-- Angular Module -->
+  <script src="./app.js"></script>
+  <!-- Angular service -->
+  <script src="./service/mainService.js"></script>
+  <!-- Angular Controller -->
+  <script src="./aControllers/mainController.js"></script>
+  <script src="./aControllers/chatController.js"></script>
+  <!-- Custome Angular Directive -->
+  <script src="./directives/phoneDirective.js"></script>
+</body>
+</html>

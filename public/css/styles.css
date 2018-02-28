@@ -1,0 +1,71 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Open Sans', san-serif
+}
+.login-container {
+  border-radius: 5px;
+  border: rgba(94, 94, 94, 0.575) solid 1px;
+  width: 30%;
+  margin: 0% 35% 0% 35%;
+}
+
+.login-text {
+  width: 90%;
+  margin: 0% 5% 0% 5%;
+}
+.login-button {
+  width: 90%;
+  margin: 15px 5% 15px 5%;
+  
+}
+.register-click {
+  color: blue;
+  cursor: pointer;
+}
+.chats-boxes{
+  border: rgba(0, 0, 0, 0.521) solid 1px;
+  height: 100%;
+}
+#tester-hide{
+  color:rgb(204, 204, 204);
+  cursor: pointer;
+}
+#header{
+  color: white;
+  height: 75px;
+  background-color: rgb(91, 130, 156);
+}
+#chat-container {
+  width: 100%;
+  height: 600px;
+  /* border: black solid 1px; */
+}
+#current-user{
+  border: black solid 1px;
+}
+#chat-top{
+  /* border: rgba(0, 0, 0, 0.438) solid 1px;   */
+  height: 10%;
+}
+#chat-middle{
+  /* border: rgba(0, 0, 0, 0.438) solid 1px; */
+  height: 85%;
+}
+#chat-bottom{
+  /* border: rgba(0, 0, 0, 0.438) solid 1px; */
+  height: 5%;
+}
+#chat-button {
+  height: 100%;
+  width: 100%;
+}
+#map {
+  width: 100%;
+  height: 200px;
+}
